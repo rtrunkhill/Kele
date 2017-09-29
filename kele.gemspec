@@ -1,11 +1,11 @@
  Gem::Specification.new do |s|
    s.name          = 'kele'
    s.version       = '0.0.1'
-   s.date          = '2015-12-02'
+   s.date          = '2017-09-29'
    s.summary       = 'Kele API Client'
    s.description   = 'A client for the Bloc API'
-   s.authors       = ['Hannah McExample']
-   s.email         = 'hannah@example.com'
+   s.authors       = ['Rory Trunkhill']
+   s.email         = 'skepts@gmail.com'
    s.files         = ['lib/kele.rb']
    s.require_paths = ["lib"]
    s.homepage      =
