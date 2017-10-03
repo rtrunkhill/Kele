@@ -31,16 +31,25 @@ class Kele
         puts availability
     end
     
-    # def get_roadmap(roadmap_id)
-    #     response = self.class.get("/roadmaps/#{roadmap_id}", headers: { "authorization" => @auth_token })
-    #     @roadmap = JSON.parse(response.body)
-    # end
+    def get_messages(page = nil)
+        if page
+            response = self.class.get("/message_threads", headers: { "authorization" => @auth_token }, body: { "page" => page } )
+            @messages = JSON.parse(response.body)
+        else
+            response = self.class.get("/message_threads", headers: { "authorization" => @auth_token })
+            @messages = JSON.parse(response.body)
+        end
+    end
     
-    # def get_checkpoint(cp_id)
-    #     response = self.class.get("/checkpoints/#{cp_id}", headers: { "authorization" => @auth_token })
-    #     @checkpoints = JSON.parse(response.body)
-    # end
-        
+    def create_message(email, recipient_id, subject, message)
+            response = self.class.post("/messages", 
+            body: {
+                "sender" => email,
+                "recipient_id" => recipient_id,
+                "subject" => subject,
+                "stripped-text" => message
+            },  headers: { "authorization" => @auth_token })
+    end
     
 end
 
