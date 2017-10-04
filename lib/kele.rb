@@ -42,13 +42,23 @@ class Kele
     end
     
     def create_message(email, recipient_id, subject, message)
-            response = self.class.post("/messages", 
-            body: {
-                "sender" => email,
-                "recipient_id" => recipient_id,
-                "subject" => subject,
-                "stripped-text" => message
-            },  headers: { "authorization" => @auth_token })
+        response = self.class.post("/messages", 
+        body: {
+            "recipient_id" => recipient_id,
+            "subject" => subject,
+            "stripped-text" => message
+        },  headers: { "authorization" => @auth_token })
+    end
+    
+    def create_submission(assignment_branch, assignment_commit_link, checkpoint_id, comment, enrollment_id)
+        response = self.class.get("/checkpoint_submissions",
+        body: {
+            "assignment_branch" => assignment_branch,
+            "assignment_commit_link" => assignment_commit_link,
+            "checkpoint_id" => checkpoint_id,
+            "comment" => comment,
+            "enrollment_id" => enrollment_id
+        }, headers: { "authorization" => @auth_token })
     end
     
 end
